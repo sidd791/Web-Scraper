@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <form method="POST" action="/" style="display: inline-block;">
+                    {% csrf_token %}
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="inputField"
+                            placeholder="Enter link you want to scrape"
+                            name="site">
+            </div>
+
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary mr-2">Scrape</button>
+                </form> <!-- Moved the closing tag for the first form here -->
+                <form method="POST" action="delete" style="display: inline-block;"> <!-- Corrected the action attribute -->
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger mr-2">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+    <div class="row mt-4">
+        <div class="col">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">S.no.</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Link Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Table rows will go here -->
+                {% for i in data %}
+                <tr>
+                    <td>{{i.id}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.link_address}}</td>
+                </tr>
+                {% endfor %}
+                <!-- Example row, you can add more rows dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
